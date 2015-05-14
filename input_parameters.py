@@ -6,7 +6,7 @@ MU = 0.001003
 
 P = PARAMETERS = {
 
-  'COUNTER':        201
+  'COUNTER':        36
 , 'DEL_T':          np.pi*0.01/RF
 #, 'DEL_T':          1/0.7104278595/200
 , 'DSTEP':          10**-5
@@ -18,21 +18,21 @@ P = PARAMETERS = {
 # Fluid Body Constants                                                        #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 , 'N_BODY':         100
-, 'C':              1.0
+, 'C':              1.
 , 'K':              2.-(12.4/180)
 , 'EPSILON':        0.075
-, 'V0':             -1.0
+, 'V0':             -1.00
 , 'THETA_MAX':      5.73*np.pi/180
 , 'F':              RF/(2*np.pi)
 #, 'F':              0.7104278595
 , 'PHI':            0
-, 'T_MAX':          0.03
+, 'T_MAX':          0.1
 
 , 'CE':             0.4
 , 'S':              0.1
 , 'RHO':            998.2
 
-, 'SW_GEOMETRY':    'VDV'
+, 'SW_GEOMETRY':    'TD'
 , 'SW_KUTTA':       1
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -53,6 +53,9 @@ P = PARAMETERS = {
 , 'MATERIAL':           'Aluminum'
 , 'E':                  75.0e9
 , 'RHO_S':              2710
+#, 'MATERIAL':           'Polyethylene'
+#, 'E':                  3.8e9
+#, 'RHO_S':              935
 , 'FRAC_DELT':          0.1
 , 'FLEX_RATIO':         0.05
 , 'T_CONST':            0.95
@@ -61,9 +64,9 @@ P = PARAMETERS = {
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # FSI Coupling Constants                                                      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-, 'N_OUTERCORR_MAX':    500
-, 'OUTER_CORR_TOL':     1e-3
-, 'FIXED_PT_RELAX':     0.001
+, 'N_OUTERCORR_MAX':    5000
+, 'OUTER_CORR_TOL':     1e-5
+, 'FIXED_PT_RELAX':     0.00001
 , 'COUPLING_SCHEME':    'Aitken'
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
