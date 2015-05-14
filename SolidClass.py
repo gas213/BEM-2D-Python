@@ -11,23 +11,22 @@ class solid(object):
     'Toolkit for Finite Element structural analysis'
     def __init__(self, Body, N_ELEMENTS_S,tmax):
         """Iniitalizes object related variables needed for other class methods."""
-#        Body.x_mid[0,:] = (Body.x[:-1]+Body.x[1:])/2
-#        Body.z_mid[0,:] = (Body.z[:-1]+Body.z[1:])/2
+        x_mid = (Body.BF.x[:-1]+Body.BF.x[1:])/2
         
         self.Nelements = N_ELEMENTS_S        
         self.Nnodes = self.Nelements + 1
-        self.xp_0 = Body.BF.x
-        self.zp_0 = Body.BF.z
+        self.xp_0 = np.copy(Body.BF.x)
+        self.zp_0 = np.copy(Body.BF.z)
         self.pivotPoint = (0.5*tmax) / (max(self.xp_0) - min(self.xp_0))
         self.nodes = np.zeros((self.Nnodes,3))
-        self.nodesNew = self.nodes
-        self.nodes_0 = self.nodes
-        self.tempNodes = self.nodes
+        self.nodesNew = np.zeros((self.Nnodes,3))
+        self.nodes_0 = np.zeros((self.Nnodes,3))
+        self.tempNodes = np.zeros((self.Nnodes,3))
         self.tBeam = np.zeros((self.Nelements,1))
-        self.ttemp = self.tBeam
-        self.tBeamStruct = self.tBeam
+        self.ttemp = np.zeros((self.Nelements,1))
+        self.tBeamStruct = np.zeros((self.Nelements,1))
         self.meanline_p0 = Body.BF.x / (np.max(Body.BF.x) - np.min(Body.BF.x))
-        self.meanline_c0 = Body.AF.x_mid / (np.max(Body.BF.x) - np.min(Body.BF.x))
+        self.meanline_c0 = x_mid / (np.max(Body.BF.x) - np.min(Body.BF.x))
         self.fixedCounter = 0
         self.beamCounter = 0
         
@@ -73,7 +72,9 @@ class solid(object):
                                 (max(self.xp_0)-min(self.xp_0))/self.Nelements)
         self.nodes[:,1] = np.zeros((self.Nnodes,1)).T
         self.nodes[:,2] = self.nodes[:,0] / (max(self.nodes[:,0])-min(self.nodes[:,1]))
-        self.nodes_0 = self.nodes
+        
+        self.nodes_0 = np.copy(self.nodes)      
+        self.nodesNew = np.copy(self.nodes)        
         
     def rotatePts(x0, y0, theta):
         x = x0 * np.cos(theta) - y0 * np.sin(theta)

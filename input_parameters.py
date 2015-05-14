@@ -6,9 +6,9 @@ MU = 0.001003
 
 P = PARAMETERS = {
 
-  'COUNTER':        401
+  'COUNTER':        201
 , 'DEL_T':          np.pi*0.01/RF
-#, 'DEL_T':          0.01
+#, 'DEL_T':          1/0.7104278595/200
 , 'DSTEP':          10**-5
 , 'TSTEP':          10**-5
 , 'VERBOSITY':      1
@@ -18,15 +18,15 @@ P = PARAMETERS = {
 # Fluid Body Constants                                                        #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 , 'N_BODY':         100
-, 'C':              1.
+, 'C':              1.0
 , 'K':              2.-(12.4/180)
 , 'EPSILON':        0.075
 , 'V0':             -1.0
 , 'THETA_MAX':      5.73*np.pi/180
 , 'F':              RF/(2*np.pi)
-#, 'F':              0.5
+#, 'F':              0.7104278595
 , 'PHI':            0
-, 'T_MAX':          0.01
+, 'T_MAX':          0.03
 
 , 'CE':             0.4
 , 'S':              0.1
@@ -54,15 +54,15 @@ P = PARAMETERS = {
 , 'E':                  75.0e9
 , 'RHO_S':              2710
 , 'FRAC_DELT':          0.1
-, 'FLEX_RATIO':         0.3
+, 'FLEX_RATIO':         0.05
 , 'T_CONST':            0.95
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # FSI Coupling Constants                                                      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-, 'N_OUTERCORR_MAX':    50
-, 'OUTER_CORR_TOL':     1e-5
+, 'N_OUTERCORR_MAX':    500
+, 'OUTER_CORR_TOL':     1e-3
 , 'FIXED_PT_RELAX':     0.001
 , 'COUPLING_SCHEME':    'Aitken'
 

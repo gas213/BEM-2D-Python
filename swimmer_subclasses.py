@@ -151,9 +151,7 @@ class Body(object):
         S = GeoFPParameters.S
         C = GeoFPParameters.C
         D = GeoFPParameters.D
-     
-        
-        
+
         # Stepping through each spanwise position to calculate the positions of the 
         # fin neutral plane at the given time step.
         start = 0
@@ -161,7 +159,7 @@ class Body(object):
         step  = (N+2)/2
         theta = np.linspace(start,stop,step)
         xb = (C*np.cos(theta).T + C)/(2.*C)
-#        print xb
+        print xb
         
         start = np.pi
         stop  = 0
@@ -294,8 +292,8 @@ class Body(object):
         afz_col = z_mid - self.S*panel_vectors(afx, afz)[3]*np.absolute(bfz_col)
         
         # Archive past values of x_mid and z_mid for differencing wrt time later
-        archive(self.AF.x_mid)
-        archive(self.AF.z_mid)
+#        archive(self.AF.x_mid)
+#        archive(self.AF.z_mid)
         
         self.AF.x = afx
         self.AF.z = afz
@@ -390,7 +388,7 @@ class Body(object):
         
         self.p = -RHO*(qpx_tot**2 + qpz_tot**2)/2. + RHO*dmu_dt + RHO*(qpx_tot*(self.V0+self.vx) + qpz_tot*self.vz)
         self.cp = self.p / (0.5*RHO*self.V0**2)
-           
+
     def force(self, i):
         """Calculates drag and lift forces acting on the body.
         
